@@ -19,6 +19,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'oc_lettings_site.apps.OCLettingsSiteConfig',
     'lettings.apps.LettingsConfig',
     'profiles.apps.ProfilesConfig',
     'home.apps.HomeConfig',

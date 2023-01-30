@@ -35,4 +35,3 @@ def letting(request, letting_id):
         'address': letting.address,
     }
     return render(request, 'lettings/letting.html', context)
-
