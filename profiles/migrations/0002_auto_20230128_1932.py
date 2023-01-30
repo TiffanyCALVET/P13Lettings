@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 user_id,
                 favorite_city
             FROM
-                oc_lettings_site_profile;
+                profiles_profile;
                     """, reverse_sql="""
                         INSERT INTO oc_lettings_site_profile (
                             id,

@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 title,
                 address_id
             FROM
-                oc_lettings_site_letting;
+                lettings_letting;
         """, reverse_sql="""
             INSERT INTO oc_lettings_site_letting (
                 id,
@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
                     zip_code,
                     country_iso_code
                 FROM
-                    oc_lettings_site_address;
+                    lettings_address;
             """, reverse_sql="""
                 INSERT INTO oc_lettings_site_address (
                     id,
