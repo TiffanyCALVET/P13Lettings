@@ -1,8 +1,9 @@
 # syntax=docker/dockerfile:1
-FROM python:3.9-alpine
+FROM python:3-alpine
 
 ENV PYTHONUNBUFFERED 1
-EXPOSE 8000
+ENV PYTHONDONTWRITEBYCODE 1
+EXPOSE 8080
 
 RUN mkdir /code_P13_lettings
 
@@ -18,4 +19,4 @@ RUN pip install -r requirements.txt
 COPY . /code_P13_lettings/
 
 # final configuration
-CMD python manage.py runserver 0.0.0.0 --port 8000
+CMD python manage.py runserver 0.0.0.0:8080
