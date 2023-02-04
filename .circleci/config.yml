@@ -21,20 +21,17 @@ jobs:
           command : |
             . venv/bin/activate
             pytest
-
-  deploy:
-    docker:
-      -image: cimg/python:3.10.2
-    machine:
-      true
+  push-on-dockerhub:
+    machine: true
     steps:
       - checkout
       - setup_remote_docker
       - run:
           name: Build and push to DockerHub
           command: |
-            docker build -t $DOCKER_USER_ID/$IMAGE_NAME:latest .
-            echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_USER_ID" --password-stdin
+            echo "$DOCKER_HUB_PASSWORD" | docker login -_username $DOCKER_LOGIN --password-stdin
+            docker build -t $IMAGE_NAME .
+            docker tag $IMAGE_NAME:lastest $DOCKER_USER_ID/$IMAGE_NAME:latest
             docker push  $DOCKER_USER_ID/$IMAGE_NAME:latest
 
 workflows:
@@ -42,6 +39,10 @@ workflows:
     build-master:
       jobs:
         - build
-        - deploy:
+        - push-on-dockerhub:
             requires:
               - build
+            filters:
+              branches:
+                only:
+                  -master
