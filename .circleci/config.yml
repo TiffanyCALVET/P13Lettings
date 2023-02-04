@@ -13,6 +13,7 @@ jobs:
             pip install -r requirements.txt
       - run:
           name: Linting
+          working_directory : /P13Lettings
           command : |
             . env/bin/activate
             flake8
