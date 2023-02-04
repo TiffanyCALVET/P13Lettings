@@ -1,4 +1,8 @@
-version: 2
+version: 2.1
+
+orbs:
+  heroku: circleci/heroku@2.0
+
 jobs:
   build:
     docker:
@@ -34,6 +38,16 @@ jobs:
             docker tag $IMAGE_NAME:lastest $DOCKER_USER_ID/$IMAGE_NAME:latest
             docker push  $DOCKER_USER_ID/$IMAGE_NAME:latest
 
+  deploy-on-heroku:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+    run :
+      commande : >
+      echo "The command above install Heroku, the command below deploys."
+    - heroku/deploy-via-git
+
 workflows:
     version: 2
     build-master:
@@ -46,3 +60,10 @@ workflows:
               branches:
                 only:
                   -master
+        - deploy-on-heroku:
+            requires:
+              - push-on-dockerhub
+            filters:
+              branches:
+                only:
+                  - master
