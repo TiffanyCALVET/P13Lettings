@@ -42,11 +42,7 @@ jobs:
     executor: heroku/default
     steps:
       - checkout
-      - heroku/install
-    run :
-      commande : >
-      echo "The command above install Heroku, the command below deploys."
-    - heroku/deploy-via-git
+      - heroku/deploy-via-git
 
 workflows:
     version: 2
