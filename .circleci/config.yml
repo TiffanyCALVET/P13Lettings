@@ -48,17 +48,5 @@ workflows:
     build-master:
       jobs:
         - build
-        - push-on-dockerhub:
-            requires:
-              - build
-            filters:
-              branches:
-                only:
-                  -master
-        - deploy-on-heroku:
-            requires:
-              - push-on-dockerhub
-            filters:
-              branches:
-                only:
-                  - master
+        - push-on-dockerhub
+        - deploy-on-heroku
