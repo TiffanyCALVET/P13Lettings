@@ -56,7 +56,7 @@ jobs:
       - run:
           name: Build and push to DockerHub
           command: |
-            echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_LOGIN --password-stdin
+            echo "$DOCKER_HUB_PASSWORD" | docker login --username formationdapython2021 --password-stdin
             docker build -t $IMAGE_NAME .
             docker tag $IMAGE_NAME:lastest $DOCKER_USER_ID/$IMAGE_NAME:latest
             docker push  $DOCKER_USER_ID/$IMAGE_NAME:latest
