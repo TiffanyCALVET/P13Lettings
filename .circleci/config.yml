@@ -42,7 +42,8 @@ jobs:
     executor: heroku/default
     steps:
       - checkout
-      - heroku/deploy-via-git
+      - heroku/deploy-via-git:
+          force: true
 
 workflows:
     version: 2
