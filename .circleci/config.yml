@@ -37,13 +37,11 @@ jobs:
             docker build -t $IMAGE_NAME .
             docker tag $IMAGE_NAME:lastest $DOCKER_USER_ID/$IMAGE_NAME:latest
             docker push  $DOCKER_USER_ID/$IMAGE_NAME:latest
-
   deploy-on-heroku:
     executor: heroku/default
     steps:
       - checkout
-      - heroku/deploy-via-git:
-          force: true
+      - heroku/deploy-via-git
 
 workflows:
     version: 2
