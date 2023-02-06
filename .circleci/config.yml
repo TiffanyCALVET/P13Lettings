@@ -57,8 +57,9 @@ jobs:
           name: Build and push to DockerHub
           command: |
             echo "$DOCKER_HUB_PASSWORD" | docker login --username formationdapython2021 --password-stdin
-            docker build --tag formationdapython2021/oc_p13_letting:${CIRCLE_SHA1} .
-            docker push  formationdapython2021/oc_p13_lettings:${CIRCLE_SHA1}
+            docker build -t image_oc_p13_lettings .
+            docker tag image_oc_p13_lettings formationdapython2021/formationdapython2021/oc_p13_lettings:${CIRCLE_SHA1}
+            docker push  formationdapython2021/formationdapython2021/oc_p13_lettings:${CIRCLE_SHA1}
   deploy-on-heroku:
     executor: heroku/default
     steps:
