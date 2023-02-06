@@ -56,7 +56,8 @@ jobs:
       - run:
           name: Build and push to DockerHub
           command: |
-            echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_LOGIN --password-stdin
+            echo "$DOCKER_PASSWORD" | docker logout
+            docker login --username $DOCKER_LOGIN --password-stdin
             docker build -t image_oc_p13_lettings .
             docker tag image_oc_p13_lettings $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
             docker push  $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
