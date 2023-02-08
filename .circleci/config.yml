@@ -13,14 +13,14 @@ workflows:
             filters:
               branches:
                 only:
-                  - master
+                  - main
         - deploy:
             requires:
               - push-on-dockerhub
             filters:
               branches:
                 only:
-                  - master
+                  - main
 
 jobs:
   build:
