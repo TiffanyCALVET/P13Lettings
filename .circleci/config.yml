@@ -6,11 +6,7 @@ orbs:
 workflows:
     build-master:
       jobs:
-        - build:
-            filters :
-                branches:
-                    only:
-                        - master
+        - build
         - push-on-dockerhub:
             requires:
               - build
