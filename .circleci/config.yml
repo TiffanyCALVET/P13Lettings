@@ -57,9 +57,9 @@ jobs:
           name: Build and push to DockerHub
           command: |
             echo $CIRCLE_SHA1 | docker login --username $DOCKER_LOGIN --password $DOCKER_PASSWORD
-            docker build -t image_oc_p13_lettings .
-            docker tag image_oc_p13_lettings $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
-            docker push  $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
+            docker build -t image-circleci-lettings .
+            docker tag image-circleci-lettings:$CIRCLE_SHA1 $DOCKER_LOGIN/image-circleci-lettings:$CIRCLE_SHA1
+            docker push  $DOCKER_LOGIN/image-circleci-lettings:$CIRCLE_SHA1
   deploy-on-heroku:
     executor: heroku/default
     steps:
