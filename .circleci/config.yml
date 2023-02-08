@@ -20,7 +20,6 @@ workflows:
                   - master
         - deploy-on-heroku :
             requires:
-              - build
               - push-on-dockerhub
             filters:
               branches:
