@@ -18,7 +18,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY', default=get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', 'oc-lettings-p13.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'oc-lettings-p13.herokuapp.com']
 
 # Application definition
 
