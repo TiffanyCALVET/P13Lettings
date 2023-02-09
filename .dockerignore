@@ -1,3 +1,4 @@
+./oc_lettings_site/urls
 venv/
 __pycache__
 .pytest_cache
