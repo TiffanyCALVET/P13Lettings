@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Profile
 
+
 def index(request):
     """
     Sed placerat quam in pulvinar commodo. Nullam laoreet consectetur ex,
