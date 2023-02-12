@@ -6,7 +6,6 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 
-
 # Initialiser les variables d'environnement
 env = environ.Env()
 environ.Env.read_env()
