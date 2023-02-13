@@ -13,7 +13,7 @@ environ.Env.read_env()
 
 # Config sentry
 sentry_sdk.init(
-    dsn=env('SENTRY_DSN'),
+    dsn='https://520f103fe8454449b5380474f62ce272@o4504667214315520.ingest.sentry.io/4504667223687168',
     integrations=[DjangoIntegration()],
     traces_sample_rate=1.0,
     send_default_pii=True
