@@ -2,6 +2,8 @@ import os
 import environ
 from django.core.management.utils import get_random_secret_key
 
+import django_heroku
+
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
@@ -117,6 +119,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+django_heroku.settings(locals())
 
 # Config Sentry :
 
