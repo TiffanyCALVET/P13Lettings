@@ -52,7 +52,7 @@ jobs:
           name: Build and push to DockerHub
           command: |
             echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_LOGIN --password-stdin
-            docker build -t images_lettings_site .
+            docker build -t image_lettings_site .
             docker tag image_lettings_site $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
             docker push $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
   deploy:
