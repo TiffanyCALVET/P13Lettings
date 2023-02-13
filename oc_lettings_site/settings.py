@@ -11,14 +11,6 @@ from django.core.management.utils import get_random_secret_key
 env = environ.Env()
 environ.Env.read_env()
 
-# Config sentry
-sentry_sdk.init(
-    dsn='https://520f103fe8454449b5380474f62ce272@o4504667214315520.ingest.sentry.io/4504667223687168',
-    integrations=[DjangoIntegration()],
-    traces_sample_rate=1.0,
-    send_default_pii=True
-)
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -128,3 +120,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 django_heroku.settings(locals())
+
+sentry_sdk.init(
+    dsn=env('SENTRY_DSN'),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+    send_default_pii=True
+)
