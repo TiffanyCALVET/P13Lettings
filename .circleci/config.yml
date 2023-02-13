@@ -62,5 +62,6 @@ jobs:
       - heroku/deploy-via-git
       - run :
           name: collastic
-          command: | heroku config:set DISABLE_COLLECTSTATIC=1
+          command: | 
+          heroku config:set DISABLE_COLLECTSTATIC=1
           
