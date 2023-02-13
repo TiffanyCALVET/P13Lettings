@@ -7,6 +7,15 @@ from sentry_sdk.integrations.django import DjangoIntegration
 from django.core.management.utils import get_random_secret_key
 
 
+# Config sentry
+sentry_sdk.init(
+    dsn=os.environ.get('SENTRY_DSN'),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+    send_default_pii=True
+)
+
+
 # Initialiser les variables d'environnement
 env = environ.Env()
 environ.Env.read_env()
@@ -120,10 +129,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 django_heroku.settings(locals())
-
-sentry_sdk.init(
-    dsn=os.environ.get('SENTRY_DSN'),
-    integrations=[DjangoIntegration()],
-    traces_sample_rate=1.0,
-    send_default_pii=True
-)
