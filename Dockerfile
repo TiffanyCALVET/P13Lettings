@@ -11,9 +11,12 @@ WORKDIR /code_P13_lettings
 COPY requirements.txt /code_P13_lettings/
 
 # install psycopg2 dependencies
-RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev \
+RUN apk update && \
+    apk add postgresql-dev gcc python3-dev musl-dev && \
+    pip install -r requirements.txt && \
     apk --purge del .build-deps
+
+
 
 # install app dependencies
 RUN pip install -r requirements.txt
