@@ -10,10 +10,6 @@ RUN mkdir /code_P13_lettings
 # work directory
 WORKDIR /code_P13_lettings
 
-# install psycopg2 dependencies
-RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev
-
 # install app dependencies
 RUN pip install --upgrade pip
 COPY requirements.txt /code_P13_lettings/
