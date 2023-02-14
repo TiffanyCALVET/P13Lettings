@@ -11,7 +11,6 @@ RUN mkdir /code_P13_lettings
 WORKDIR /code_P13_lettings
 
 # install app dependencies
-RUN pip install --upgrade pip
 COPY requirements.txt /code_P13_lettings/
 RUN pip install -r requirements.txt
 
