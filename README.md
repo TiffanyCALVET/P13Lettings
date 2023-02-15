@@ -75,3 +75,78 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+
+## Docker
+
+Télécharger et installer [Docker](https://docs.docker.com/get-docker/)
+
+Commande :
+- création d'image : `docker build -t <image-name> `
+- lancement : `docker run --publish 8080:8080  <image-name>`
+
+Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:8080/
+
+
+## Développement 
+
+### Prérequis
+
+Pour effectuer le déploiment vous devez vous connecter ou vous créer un compte
+aux applications sivantes :
+- [GitHub](https://github.com/)
+- [CircleCI](https://circleci.com)
+- [Docker](https://www.docker.com)
+-  [Heroku](https://www.heroku.com)
+- [Sentry](https://sentry.io/welcome/)
+
+### Description
+
+Le déploiement de l'application est automatisé par le pipeline CircleCi.
+
+Tous push sur Github effectué sur la branche main relance le pipeline.
+
+Si les Tests et les linting sont réussis, alors le pipeline crée une image Docker 
+du projet et le dépose sur le DockerHub. Si cette étape est validée alors l'application est
+déployée sur Heroku.
+
+### CircleCI
+
+Se connecter à son compte via GitHub. Récupérer le votre projet.
+Les instructions de commande se retourve dans le fichier .circleci/config.yml .
+
+Dans Settings Project/Environnement Variables configurez les données suivantes :
+- DOCKER_LOGIN 
+- DOCKER_PASSWORD
+- DOCKER_REPO 
+- HEROKU_API_KEY 
+- HEROKU_APP_NAME 
+- SENTRY_DSN
+
+
+### Docker
+
+Créer un répertoire sur DockerHub pour accueillir l'image du pipeline de CircleCi.
+
+
+### Heroku
+
+Connectez-vous à votre compte Héroku. 
+Créer une nouvelle app. 
+
+Dans l'onglet Deploy vous connecter avec votre compte GitHub et choisir votre projet.
+
+Dans l'onglet Ressource activé les Eco Dynos (web gunicorn) ne pas ajouter Add-ons 
+DATABASE.
+
+Dans l'onglet Settings/Config Vars, ajoutez la variable SENTRY_DSN et sa valeur.
+
+
+### Sentry
+
+Connectez-vous à Sentry et créer un projet avec Django.
+
+Il vous faudra :
+- renseignez la clef DSN dans : le fichier .env du projet, dans votre pipeline CircleCI et dans Heroku. 
+Elle se trouve dans l'onglet Settings/Project/Client Keys (DSN).
+- Il vous faudra générer une erreur et une route. Vous serez guider lors de la création de votre projet.
